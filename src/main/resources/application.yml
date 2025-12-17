@@ -17,4 +17,4 @@ openai:
 python:
   ai:
     server:
-      url: ${RENDER_FLASK_KEY:http://localhost:5000}
+      url: ${AI_SERVER_URL:http://localhost:5000}

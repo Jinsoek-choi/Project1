@@ -1,6 +1,7 @@
 package com.example.interest.service;
 
 import com.example.interest.domain.InterestResult;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -9,6 +10,9 @@ import java.util.*;
 
 @Service
 public class InterestService {
+
+    @Value("${AI_SERVER_URL}")
+    private String aiServerUrl;
 
     public InterestResult analyze(List<String> answers) {
 
@@ -54,7 +58,7 @@ public class InterestService {
 
     public Map<String, Double> analyzeWithPython(String userInput) {
         RestTemplate restTemplate = new RestTemplate();
-        String apiUrl = "http://192.168.100.224:5000/predict";
+        String apiUrl = aiServerUrl + "/predict";
 
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("sentence", userInput);
